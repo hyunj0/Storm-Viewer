@@ -30,6 +30,8 @@ class ViewController: UITableViewController {
             }
         }
         
+        pictures.sort()
+        
         print(pictures)
     }
     
@@ -40,12 +42,14 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Picture", for: indexPath)
         cell.textLabel?.text = pictures[indexPath.row]
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 22.0)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = DetailViewController()
         vc.selectedImage = pictures[indexPath.row]
+        vc.imageTitle = "Picture \(indexPath.row + 1) of \(pictures.count)"
         navigationController?.pushViewController(vc, animated: true)
     }
 }
